@@ -34,6 +34,7 @@ namespace SimplzBot
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBox1
@@ -82,11 +83,22 @@ namespace SimplzBot
             this.textBox1.Size = new System.Drawing.Size(244, 23);
             this.textBox1.TabIndex = 4;
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(262, 99);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(86, 25);
+            this.btnClear.TabIndex = 5;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(360, 159);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnCopy);
             this.Controls.Add(this.btnRemove);
@@ -107,6 +119,7 @@ namespace SimplzBot
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 

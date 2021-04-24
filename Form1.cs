@@ -22,6 +22,13 @@ namespace SimplzBot
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            listBox1.Items.Add("Name");
+            listBox1.Items.Add("Surname");
+            listBox1.Items.Add("Id");
+            listBox1.Items.Add("DoB dd/MM/yyyy");
+            listBox1.Items.Add("Mobile");
+            listBox1.Items.Add("Confirmation mobile");
+            listBox1.Items.Add("e-mail");
         }
 
         protected override void WndProc(ref Message m)
@@ -65,6 +72,11 @@ namespace SimplzBot
             {
                 Clipboard.SetText(listBox1.SelectedItem.ToString());
             }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
         }
     }
 }
