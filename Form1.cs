@@ -22,8 +22,7 @@ namespace SimplzBot
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            listBox1.Items.Add("Name");
-            listBox1.Items.Add("Surname");
+            listBox1.Items.Add("Name{tab}{tab}Surname");
             listBox1.Items.Add("Id");
             listBox1.Items.Add("DoB dd/MM/yyyy");
             listBox1.Items.Add("Mobile");
