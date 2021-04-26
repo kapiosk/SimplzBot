@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimplzBot
@@ -39,6 +32,9 @@ namespace SimplzBot
 
         private void HandleHotkey()
         {
+            if (listBox1.SelectedIndex == -1 && listBox1.Items.Count > 0)
+                listBox1.SelectedIndex = 0;
+
             if (!(listBox1.SelectedItem is null))
             {
                 SendKeys.Send(listBox1.SelectedItem.ToString());
