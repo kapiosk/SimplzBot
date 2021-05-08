@@ -13,6 +13,7 @@ namespace SimplzBot
         };
 
         private KeyHandler ghk;
+        private bool botFlag;
         public Form1()
         {
             InitializeComponent();
@@ -47,14 +48,23 @@ namespace SimplzBot
 
         private void HandleHotkey()
         {
-            if (listBox1.SelectedIndex == -1 && listBox1.Items.Count > 0)
-                listBox1.SelectedIndex = 0;
-
-            if (!(listBox1.SelectedItem is null))
+            if (listBox1.Items.Count > 0)
             {
-                SendKeys.Send(listBox1.SelectedItem.ToString());
-                if (listBox1.SelectedIndex < listBox1.Items.Count - 1)
-                    listBox1.SelectedIndex += 1;
+                if (listBox1.SelectedIndex == -1 && listBox1.Items.Count > 0)
+                    listBox1.SelectedIndex = 0;
+
+                if (!(listBox1.SelectedItem is null))
+                {
+                    SendKeys.Send(listBox1.SelectedItem.ToString());
+                    if (listBox1.SelectedIndex < listBox1.Items.Count - 1)
+                        listBox1.SelectedIndex += 1;
+                }
+            }
+            else
+            {
+                botFlag = !botFlag;
+                if (botFlag) timer1.Start();
+                else timer1.Stop();
             }
         }
 
@@ -126,6 +136,16 @@ namespace SimplzBot
             listBox1.Items.RemoveAt(indxFrom);
             listBox1.Items.Insert(indxFromTo, tmp);
             listBox1.SelectedIndex = indxFromTo;
+        }
+
+        private int mouseMove = 50;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            mouseMove *= -1;
+            var pos = MouseHandler.GetCursorPosition();
+            pos.Y += mouseMove;
+            MouseHandler.MoveCursorToPoint(pos.X, pos.Y);
+            MouseHandler.DoMouseClick();
         }
     }
 }
