@@ -40,6 +40,10 @@ namespace SimplzBot
             this.btnUp = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnMouse = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
@@ -55,7 +59,7 @@ namespace SimplzBot
             // 
             this.btnAdd.Location = new System.Drawing.Point(262, 12);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(84, 23);
+            this.btnAdd.Size = new System.Drawing.Size(81, 23);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -65,7 +69,7 @@ namespace SimplzBot
             // 
             this.btnRemove.Location = new System.Drawing.Point(262, 41);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(84, 23);
+            this.btnRemove.Size = new System.Drawing.Size(81, 23);
             this.btnRemove.TabIndex = 2;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -75,7 +79,7 @@ namespace SimplzBot
             // 
             this.btnCopy.Location = new System.Drawing.Point(262, 70);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(84, 23);
+            this.btnCopy.Size = new System.Drawing.Size(81, 23);
             this.btnCopy.TabIndex = 3;
             this.btnCopy.Text = "Copy";
             this.btnCopy.UseVisualStyleBackColor = true;
@@ -92,7 +96,7 @@ namespace SimplzBot
             // 
             this.btnClear.Location = new System.Drawing.Point(262, 99);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(84, 23);
+            this.btnClear.Size = new System.Drawing.Size(81, 23);
             this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -100,7 +104,7 @@ namespace SimplzBot
             // 
             // btnDown
             // 
-            this.btnDown.Location = new System.Drawing.Point(291, 130);
+            this.btnDown.Location = new System.Drawing.Point(291, 128);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(23, 23);
             this.btnDown.TabIndex = 6;
@@ -110,7 +114,7 @@ namespace SimplzBot
             // 
             // btnUp
             // 
-            this.btnUp.Location = new System.Drawing.Point(262, 130);
+            this.btnUp.Location = new System.Drawing.Point(262, 128);
             this.btnUp.Name = "btnUp";
             this.btnUp.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.btnUp.Size = new System.Drawing.Size(23, 23);
@@ -122,9 +126,9 @@ namespace SimplzBot
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(262, 159);
+            this.comboBox1.Location = new System.Drawing.Point(291, 157);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(52, 23);
+            this.comboBox1.Size = new System.Drawing.Size(50, 23);
             this.comboBox1.TabIndex = 8;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -133,11 +137,40 @@ namespace SimplzBot
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnMouse
+            // 
+            this.btnMouse.Location = new System.Drawing.Point(320, 128);
+            this.btnMouse.Name = "btnMouse";
+            this.btnMouse.Size = new System.Drawing.Size(23, 23);
+            this.btnMouse.TabIndex = 9;
+            this.btnMouse.Text = "🖱";
+            this.btnMouse.UseVisualStyleBackColor = true;
+            this.btnMouse.Click += new System.EventHandler(this.btnMouse_Click);
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(291, 186);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(52, 23);
+            this.numericUpDown1.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(262, 186);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(19, 15);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "⏰";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(356, 207);
+            this.ClientSize = new System.Drawing.Size(353, 218);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.btnMouse);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.btnDown);
@@ -151,6 +184,7 @@ namespace SimplzBot
             this.Text = "SimplzBot";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,6 +202,9 @@ namespace SimplzBot
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnMouse;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

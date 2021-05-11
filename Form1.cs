@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SimplzBot
@@ -13,7 +14,6 @@ namespace SimplzBot
         };
 
         private KeyHandler ghk;
-        private bool botFlag;
         public Form1()
         {
             InitializeComponent();
@@ -37,6 +37,8 @@ namespace SimplzBot
             listBox1.Items.Add("Mobile");
             listBox1.Items.Add("Confirmation mobile");
             listBox1.Items.Add("e-mail");
+            listBox1.Items.Add("Mouse,Move,100,100");
+            listBox1.Items.Add("Mouse,RightClick");
         }
 
         protected override void WndProc(ref Message m)
@@ -46,24 +48,52 @@ namespace SimplzBot
             base.WndProc(ref m);
         }
 
-        private void HandleHotkey()
+        private void HandleHotkey(bool fromBot = false)
         {
-            if (listBox1.Items.Count > 0)
+            if (getMousePos)
+            {
+                GetMousePos();
+                ResetButtonColor(btnMouse);
+            }
+            else if (fromBot || numericUpDown1.Value == 0)
             {
                 if (listBox1.SelectedIndex == -1 && listBox1.Items.Count > 0)
                     listBox1.SelectedIndex = 0;
 
                 if (!(listBox1.SelectedItem is null))
                 {
-                    SendKeys.Send(listBox1.SelectedItem.ToString());
+                    var com = listBox1.SelectedItem.ToString();
+                    var comParts = com.Split(",");
+                    if (comParts[0].Equals("Mouse") && comParts.Length > 1)
+                    {
+                        switch (comParts[1])
+                        {
+                            case "Move":
+                                if (comParts.Length == 4 && int.TryParse(comParts[2], out int x) && int.TryParse(comParts[3], out int y))
+                                    MouseHandler.MoveCursorToPoint(x, y);
+                                break;
+                            case "LeftClick":
+                                MouseHandler.DoLeftMouseClick();
+                                break;
+                            case "RightClick":
+                                MouseHandler.DoRightMouseClick();
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        SendKeys.Send(listBox1.SelectedItem.ToString());
+                    }
                     if (listBox1.SelectedIndex < listBox1.Items.Count - 1)
                         listBox1.SelectedIndex += 1;
+                    else
+                        listBox1.SelectedIndex = 0;
                 }
             }
-            else
+            else if (numericUpDown1.Value > 0)
             {
-                botFlag = !botFlag;
-                if (botFlag) timer1.Start();
+                timer1.Interval = (int)numericUpDown1.Value;
+                if (!timer1.Enabled) timer1.Start();
                 else timer1.Stop();
             }
         }
@@ -138,14 +168,32 @@ namespace SimplzBot
             listBox1.SelectedIndex = indxFromTo;
         }
 
-        private int mouseMove = 50;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            mouseMove *= -1;
+            HandleHotkey(true);
+        }
+
+        private bool getMousePos = false;
+        private void btnMouse_Click(object sender, EventArgs e)
+        {
+            getMousePos = !getMousePos;
+            if (getMousePos)
+                btnMouse.BackColor = Color.Red;
+            else
+                ResetButtonColor(btnMouse);
+        }
+
+        private void GetMousePos()
+        {
             var pos = MouseHandler.GetCursorPosition();
-            pos.Y += mouseMove;
-            MouseHandler.MoveCursorToPoint(pos.X, pos.Y);
-            MouseHandler.DoMouseClick();
+            listBox1.Items.Add($"Mouse,Move,{pos.X},{pos.Y}");
+            getMousePos = false;
+        }
+
+        private static void ResetButtonColor(Button btn)
+        {
+            btn.BackColor = DefaultBackColor;
+            btn.UseVisualStyleBackColor = true;
         }
     }
 }

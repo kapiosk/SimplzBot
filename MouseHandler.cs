@@ -12,9 +12,14 @@ namespace SimplzBot
         private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
         private const int MOUSEEVENTF_RIGHTUP = 0x10;
 
-        public static void DoMouseClick()
+        public static void DoLeftMouseClick()
         {
             mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+        }
+
+        public static void DoRightMouseClick()
+        {
+            mouse_event(MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
         }
 
         [DllImport("user32.dll")]
