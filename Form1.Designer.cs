@@ -38,6 +38,7 @@ namespace SimplzBot
             this.btnClear = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.btnUp = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnMouse = new System.Windows.Forms.Button();
@@ -123,6 +124,17 @@ namespace SimplzBot
             this.btnUp.UseVisualStyleBackColor = true;
             this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(262, 157);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnSave.Size = new System.Drawing.Size(23, 23);
+            this.btnSave.TabIndex = 7;
+            this.btnSave.Text = "💾"; //📂
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -173,6 +185,7 @@ namespace SimplzBot
             this.Controls.Add(this.btnMouse);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnUp);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.textBox1);
@@ -200,6 +213,7 @@ namespace SimplzBot
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnMouse;

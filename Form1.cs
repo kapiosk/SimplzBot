@@ -180,6 +180,30 @@ namespace SimplzBot
             }
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (listBox1.Items.Count == 0)
+            {
+                using OpenFileDialog openFileDialog = new();
+                openFileDialog.Filter = "txt files (*.txt)|*.txt";
+                openFileDialog.RestoreDirectory = true;
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    foreach (var line in File.ReadLines(openFileDialog.FileName))
+                    {
+                        listBox1.Items.Add(line);
+                    }
+                }
+            }
+            else
+            {
+                List<string> items = new();
+                foreach (var item in listBox1.Items)
+                    items.Add(item.ToString());
+                File.WriteAllText("data.txt", string.Join(Environment.NewLine, items));
+            }
+        }
+
         private void btnDown_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex > -1 && listBox1.SelectedIndex < listBox1.Items.Count - 1)
