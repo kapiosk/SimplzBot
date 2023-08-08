@@ -22,8 +22,7 @@ namespace SimplzBot
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!(ghk is null))
-                ghk.Unregiser();
+            ghk?.Unregiser();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -70,7 +69,7 @@ namespace SimplzBot
                 if (listBox1.SelectedIndex == -1 && listBox1.Items.Count > 0)
                     listBox1.SelectedIndex = 0;
 
-                if (!(listBox1.SelectedItem is null))
+                if (listBox1.SelectedItem is not null)
                 {
                     var com = listBox1.SelectedItem.ToString();
                     var comParts = com.Split(",");
@@ -146,7 +145,7 @@ namespace SimplzBot
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
-            if (!(listBox1.SelectedItem is null))
+            if (listBox1.SelectedItem is not null)
             {
                 Clipboard.SetText(listBox1.SelectedItem.ToString());
             }
@@ -159,13 +158,11 @@ namespace SimplzBot
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!(comboBox1.SelectedItem is null))
+            if (comboBox1.SelectedItem is not null)
             {
                 if (KeyBindings.TryGetValue(comboBox1.SelectedItem.ToString(), out var kb))
                 {
-                    if (!(ghk is null))
-                        ghk.Unregiser();
-
+                    ghk?.Unregiser();
                     ghk = new KeyHandler(kb, this);
                     ghk.Register();
                 }
