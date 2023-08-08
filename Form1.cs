@@ -80,6 +80,10 @@ namespace SimplzBot
                                 break;
                         }
                     }
+                    else if (comParts[0].Equals("Timer") && comParts.Length > 1)
+                    {
+                        timer1.Interval = int.Parse(comParts[1]);
+                    }
                     else
                     {
                         SendKeys.Send(listBox1.SelectedItem.ToString());
