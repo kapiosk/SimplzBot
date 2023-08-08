@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -30,15 +31,24 @@ namespace SimplzBot
             foreach (var kb in KeyBindings.Keys)
                 comboBox1.Items.Add(kb);
             comboBox1.SelectedIndex = 0;
-
-            listBox1.Items.Add("Name{tab}{tab}Surname");
-            listBox1.Items.Add("Id");
-            listBox1.Items.Add("DoB dd/MM/yyyy");
-            listBox1.Items.Add("Mobile");
-            listBox1.Items.Add("Confirmation mobile");
-            listBox1.Items.Add("e-mail");
-            listBox1.Items.Add("Mouse,Move,100,100");
-            listBox1.Items.Add("Mouse,RightClick");
+            if (File.Exists("data.txt"))
+            {
+                foreach (var line in File.ReadLines("data.txt"))
+                {
+                    listBox1.Items.Add(line);
+                }
+            }
+            else
+            {
+                listBox1.Items.Add("Name{tab}{tab}Surname");
+                listBox1.Items.Add("Id");
+                listBox1.Items.Add("DoB dd/MM/yyyy");
+                listBox1.Items.Add("Mobile");
+                listBox1.Items.Add("Confirmation mobile");
+                listBox1.Items.Add("e-mail");
+                listBox1.Items.Add("Mouse,Move,100,100");
+                listBox1.Items.Add("Mouse,RightClick");
+            }
         }
 
         protected override void WndProc(ref Message m)
