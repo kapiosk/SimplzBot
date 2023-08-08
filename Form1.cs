@@ -82,7 +82,13 @@ namespace SimplzBot
                     }
                     else if (comParts[0].Equals("Timer") && comParts.Length > 1)
                     {
-                        timer1.Interval = int.Parse(comParts[1]);
+                        if (int.TryParse(comParts[1], out int x))
+                            timer1.Interval = x;
+                        else
+                        {
+                            timer1.Stop();
+                            label1.BackColor = DefaultBackColor;
+                        }
                     }
                     else
                     {
@@ -97,8 +103,16 @@ namespace SimplzBot
             else if (numericUpDown1.Value > 0)
             {
                 timer1.Interval = (int)numericUpDown1.Value;
-                if (!timer1.Enabled) timer1.Start();
-                else timer1.Stop();
+                if (!timer1.Enabled)
+                {
+                    timer1.Start();
+                    label1.BackColor = Color.Green;
+                }
+                else
+                {
+                    timer1.Stop();
+                    label1.BackColor = DefaultBackColor;
+                }
             }
         }
 
